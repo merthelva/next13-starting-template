@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This repo is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with a version of 13.5. The primary language for this repo is Typescript. Also, a set of linting rules are injected in addition to pre-configured linting support of NextJS. (You can observe the rules inside `.eslintrc.json` file in the root directory.) In case of need, please do not hesitate to update existing rule(s) or remove/add rule(s) to further improve the ruleset.
+
+Apart from linting, a demo application with Redux Toolkit (RTK) is also embedded so that all the Redux store setup boilerplate code is already available for use. Note that the folder structure and file name convention is NOT a must and it might also be updated based on personal preference. However, if you are like me using this kind of folder structure unlike the one suggested by [RTK Official docs](https://redux-toolkit.js.org/tutorials/typescript), directly go with it!
 
 ## Getting Started
 
