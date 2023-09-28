@@ -82,7 +82,11 @@
         "selector": "variable",
         "modifiers": ["const"],
         "types": ["function"],
-        "format": ["PascalCase"]
+        "format": ["PascalCase"],
+        "filter": {
+          "regex": "^(handle|set|on)",
+          "match": false
+        }
       },
       // this configuration disables naming convention check for destructured object propert(y/ies)
       {
