@@ -1,3 +1,120 @@
 {
-  "extends": "next/core-web-vitals"
+  "plugins": ["jsx-a11y", "unused-imports"],
+  "extends": [
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:jsx-a11y/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "next/core-web-vitals",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": true
+  },
+  "rules": {
+    // Configs setup from ESLint
+    "no-unused-vars": 0,
+    "no-use-before-define": 0,
+    "consistent-return": [2, { "treatUndefinedAsUnspecified": true }],
+    "default-case": 2,
+    "default-case-last": 2,
+    "no-console": 2,
+    "no-else-return": [2, { "allowElseIf": false }],
+    "no-useless-return": 2,
+    "arrow-parens": [2, "always"],
+    "no-nested-ternary": 2,
+
+    // Configs setup from "eslint-plugin-react"
+    "react/jsx-uses-react": 2,
+    "react/jsx-uses-vars": 2,
+    "react/button-has-type": 2,
+    "react/boolean-prop-naming": [
+      // this does NOT work with "interface" declaration for component props!
+      2,
+      { "rule": "^(is|should|has|can)[A-Z]([a-z0-9]?)+", "validateNested": true }
+    ],
+    "react/destructuring-assignment": [2, "always", { "destructureInSignature": "always" }],
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "react/hook-use-state": 2,
+    "react/jsx-boolean-value": 2,
+    "react/jsx-filename-extension": [2, { "extensions": [".tsx"] }],
+    "react/jsx-fragments": 2,
+    "react/jsx-handler-names": [2, { "checkLocalVariables": true }],
+    "react/jsx-pascal-case": [2, { "allowNamespace": true }],
+    "react/no-array-index-key": 2,
+
+    // Configs setup from "@typescript-eslint"
+    "@typescript-eslint/no-unused-vars": 2,
+    "@typescript-eslint/no-use-before-define": [
+      2,
+      { "enums": true, "typedefs": true, "ignoreTypeReferences": false }
+    ],
+    "@typescript-eslint/array-type": [2, { "default": "generic", "readonly": "generic" }],
+    "@typescript-eslint/consistent-indexed-object-style": [2, "record"],
+    "@typescript-eslint/consistent-type-definitions": [2, "type"],
+    "@typescript-eslint/consistent-type-exports": 2,
+    "@typescript-eslint/consistent-type-imports": 2,
+    "@typescript-eslint/naming-convention": [
+      2,
+      // this configuration is for "boolean" variable naming convention
+      {
+        "selector": "variable",
+        "types": ["boolean"],
+        "format": ["PascalCase"],
+        "prefix": ["is", "should", "has", "can"]
+      },
+      // this configuration is for all "const" defined variable naming convention except for React component name and boolean type variable
+      // !!! --> Check that if it has conflict with "react/jsx-pascal-case" rule
+      {
+        "selector": "variable",
+        "modifiers": ["const"],
+        "format": ["UPPER_CASE", "camelCase"]
+      },
+      // this configuration disables naming convention check for destructured object propert(y/ies)
+      {
+        "selector": "variable",
+        "modifiers": ["destructured"],
+        "format": null
+      },
+      // this configuration is for "enum" variable naming convention
+      {
+        "selector": "enum",
+        "format": ["PascalCase", "UPPER_CASE"]
+      },
+      { "selector": "parameter", "format": ["camelCase"] }, // this configuration is for function "parameter" naming convention
+      // this configuration is for "type" naming convention.
+      // NOTE THAT, the following will no effect if '@typescript-eslint/consistent-type-definitions' rule is defined as [2, "interface"] in "rules" section above
+      {
+        "selector": "typeLike",
+        "format": ["PascalCase"],
+        "suffix": ["Type"]
+      }
+    ],
+
+    // Configs setup from "eslint-plugin-import"
+    "import/exports-last": 2,
+    "import/group-exports": 2,
+    "import/no-anonymous-default-export": 2,
+    // "import/prefer-default-export": 2,
+    "import/no-unassigned-import": 2,
+    "import/no-duplicates": [2, { "prefer-inline": false }],
+
+    // Configs setup from "eslint-plugin-unused-import"
+    "unused-imports/no-unused-imports": 2,
+    "unused-imports/no-unused-vars": [2, { "vars": "all", "args": "all" }],
+
+    // Configs setup from "eslint-plugin-jsx-a11y"
+    "jsx-a11y/alt-text": 2,
+    "jsx-a11y/label-has-associated-control": 2,
+    "jsx-a11y/role-has-required-aria-props": 2,
+    "jsx-a11y/role-supports-aria-props": 2
+  }
 }
