@@ -13,6 +13,40 @@
   "parserOptions": {
     "project": true
   },
+  "overrides": [
+    {
+      "files": ["**/*.tsx"],
+      "rules": {
+        "@typescript-eslint/naming-convention": [
+          2,
+          // this configuration is for all React component names. The reason why it is kept inside "overrides" section is that
+          // it conflicts with
+          // {
+          //    "selector": "variable",
+          //    "modifiers": ["const"],
+          //    "format": ["UPPER_CASE", "camelCase"]
+          // },
+          // rule, which is defined below and naming of a React component cannot be lint properly.
+
+          // Note that in order to properly lint the name of a React component, only the component, whose type is FUNCTION,
+          // must be exported from the respective .tsx file, as "modifiers: ['exported']" below expects the React component
+          // to be exported from the file. The only exception might be a custom hook definition inside a .tsx file. In that
+          // case, the name of the exported function will be something like /^(use)[A-Z]\w+/ and this will not violate the
+          // rule below thanks to "filter.regex" and "filter.match" properties and linting will succeed without any problem.
+          {
+            "selector": "variable",
+            "modifiers": ["exported"],
+            "types": ["function"],
+            "format": ["PascalCase"],
+            "filter": {
+              "regex": "^(use)",
+              "match": false
+            }
+          }
+        ]
+      }
+    }
+  ],
   "rules": {
     // Configs setup from ESLint
     "no-unused-vars": 0,
@@ -76,17 +110,6 @@
         "selector": "variable",
         "modifiers": ["const"],
         "format": ["UPPER_CASE", "camelCase"]
-      },
-      // this configuration is for all React component names. Note that this rule is distinguished from the above rule by "types" argument
-      {
-        "selector": "variable",
-        "modifiers": ["const"],
-        "types": ["function"],
-        "format": ["PascalCase"],
-        "filter": {
-          "regex": "^(handle|set|on)",
-          "match": false
-        }
       },
       // this configuration disables naming convention check for destructured object propert(y/ies)
       {
