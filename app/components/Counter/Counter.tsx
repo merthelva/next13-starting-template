@@ -28,6 +28,9 @@ const Counter = () => {
     dispatch(CounterCustomActions.incrementByCreateAction(4))
   }, [dispatch])
 
+  // Note that this function name will not violate the linting rule defined for function names,
+  // since it is NOT exported from this .tsx file. In order to have an idea, please refer to
+  // "overrides" section in .eslintrc.json file located in the root directory.
   const renderCounter = useCallback((counter: number) => {
     return (
       <div>
