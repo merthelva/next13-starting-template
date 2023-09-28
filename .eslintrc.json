@@ -48,7 +48,7 @@
     "react/jsx-filename-extension": [2, { "extensions": [".tsx"] }],
     "react/jsx-fragments": 2,
     "react/jsx-handler-names": [2, { "checkLocalVariables": true }],
-    "react/jsx-pascal-case": [2, { "allowNamespace": true }],
+    "react/jsx-pascal-case": 2,
     "react/no-array-index-key": 2,
 
     // Configs setup from "@typescript-eslint"
@@ -72,11 +72,17 @@
         "prefix": ["is", "should", "has", "can"]
       },
       // this configuration is for all "const" defined variable naming convention except for React component name and boolean type variable
-      // !!! --> Check that if it has conflict with "react/jsx-pascal-case" rule
       {
         "selector": "variable",
         "modifiers": ["const"],
         "format": ["UPPER_CASE", "camelCase"]
+      },
+      // this configuration is for all React component names. Note that this rule is distinguished from the above rule by "types" argument
+      {
+        "selector": "variable",
+        "modifiers": ["const"],
+        "types": ["function"],
+        "format": ["PascalCase"]
       },
       // this configuration disables naming convention check for destructured object propert(y/ies)
       {
